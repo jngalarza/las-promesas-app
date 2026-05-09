@@ -1,50 +1,82 @@
-# Welcome to your Expo app 👋
+# Las Promesas de GenAI Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple Expo mobile app for **Las Promesas de GenAI**.
 
-## Get started
+The app works as a dark editorial/newsroom reader for GenAI content. It fetches public JSON files from the Las Promesas website and displays News, Research, The Show episodes, and host information in a mobile-first interface.
 
-1. Install dependencies
+## Data Sources
 
-   ```bash
-   npm install
-   ```
+The app currently reads from these public JSON endpoints:
 
-2. Start the app
+- News: `https://las-promesas-de-genai.netlify.app/data/news.json`
+- Research: `https://las-promesas-de-genai.netlify.app/data/research.json`
+- Episodes / The Show: `https://las-promesas-de-genai.netlify.app/data/episodes.json`
+- Hosts / Sobre: `https://las-promesas-de-genai.netlify.app/data/hosts.json`
 
-   ```bash
-   npx expo start
-   ```
+Each source is loaded independently, so one failed feed should not prevent the other sections from rendering.
 
-In the output, you'll find options to open the app in a
+## Run Locally
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Start the Expo development server:
 
-## Learn more
+```bash
+npm run start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+You can also use:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
+```
 
-## Join the community
+## Test With Expo Go
 
-Join our community of developers creating universal apps.
+1. Install **Expo Go** on your phone.
+2. Make sure your phone and computer are on the same network.
+3. Start the app with `npm run start`.
+4. Scan the QR code shown in the terminal or Expo Dev Tools.
+5. The app should open in Expo Go.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+If the app does not refresh automatically, reload it from the Expo Go developer menu.
+
+## Current Features
+
+- Dark editorial Las Promesas visual style.
+- Custom section tabs for `Inicio`, `News`, `Research`, `The Show`, and `Sobre`.
+- `Inicio` shows:
+  - Featured/latest News item
+  - Latest News
+  - Latest Research
+  - The Show preview
+- `News` displays items from `news.json`.
+- `Research` displays items from `research.json`.
+- News and Research cards open a detail screen.
+- `The Show` displays episode cards from `episodes.json`.
+- Episode cards include a video link button when available.
+- `Sobre` displays fixed intro copy, a highlighted phrase, and host cards from `hosts.json`.
+- Loading, error, and empty states for each JSON source.
+
+## Known Limitations
+
+- No login, backend, notifications, or local storage.
+- Content is read-only.
+- The app depends on the public JSON endpoints being available.
+- Research article bodies are displayed as simplified plain text.
+- Images listed in the JSON are not rendered yet.
+- External links open outside the app.
+- The current implementation is intentionally compact and mostly contained in one screen file.
+
+## Next Steps
+
+- Add image rendering for News, Research, Episodes, and Hosts.
+- Add a dedicated navigation stack for detail screens.
+- Improve rich text rendering for Research article bodies.
+- Add pull-to-refresh.
+- Add better link handling for source URLs and episode pages.
+- Consider caching content for offline or poor-network use.
